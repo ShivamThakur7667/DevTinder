@@ -14,7 +14,7 @@ EXPRESS SERVER ->
 
 ROUTING & REQUEST HANDLERS ->
 
--> Initialize git 
+-> Initialize git
 -> .gitignore
 -> Create a remote repo on github
 -> Push all code to remote origin
@@ -38,3 +38,4 @@ MIDDLEWARES & ERROR HANDLERS ->
 -> difference betweeen app.use and app.all
 -> write a dummy auth middleware for admin
 -> write a dummy auth middleware for all user routes, expect /user/login
+-> Error handling using app.use("/", (err,req, res, next) = {});
