@@ -50,3 +50,4 @@ DATABASE, SCHEMA & MODELS MONGOOSE
 -> Create POST /signup API to add data to database
 -> Push some documents using API calls fro postman
 -> Error handling using try and catch
+

@@ -20,6 +20,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+
 connectDB()
   .then(() => {
     console.log("Database connection established");
