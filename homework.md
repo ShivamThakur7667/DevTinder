@@ -79,3 +79,4 @@ DATA SANITIZATION & SCHEMA VALIDATIONS
 -> DATA Sanitizing - Add API validation for each field
 -> Install validator
 -> Explore validator library function & Use functions for password, email, url
+-> NEVER TRUST req.body
