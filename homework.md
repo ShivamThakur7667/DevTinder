@@ -51,3 +51,8 @@ DATABASE, SCHEMA & MODELS MONGOOSE
 -> Push some documents using API calls fro postman
 -> Error handling using try and catch
 
+DIVING INTO APIs
+
+-> Difference between JSON & JS object
+-> Add the express.json() middleware to your app
+-> Make your signup API dynamic to receive data from the end user

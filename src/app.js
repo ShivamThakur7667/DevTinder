@@ -3,14 +3,11 @@ const connectDB = require("./config/database");
 const app = express();
 const User = require("./models/user");
 
+app.use(express.json());
+
 app.post("/signup", async (req, res) => {
   // creating a new instance of the user model
-  const user = new User({
-    firstName: "rohit",
-    lastName: "sharma",
-    emailId: "sharma@gmail.com",
-    password: "456789",
-  });
+  const user = new User(req.body);
 
   try {
     await user.save();
@@ -20,7 +17,6 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-
 connectDB()
   .then(() => {
     console.log("Database connection established");
@@ -29,5 +25,5 @@ connectDB()
     });
   })
   .catch((error) => {
-    console.log("Database is not connected");
+    console.log("Database is not connected" + error.message);
   });
