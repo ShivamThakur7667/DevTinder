@@ -57,22 +57,41 @@ app.delete("/user", async (req, res) => {
   }
 });
 
+// update data of the user by id
+app.patch("/user/:userId", async (req, res) => {
+  const userId = req.params?.userId;
+  const data = req.body;
 
-  // update data of the user by id
-  app.patch("/user", async (req, res) => {
-    const userId = req.body.userId;
-    const data = req.body;
-    console.log(data);
-    try {
-      const user = await User.findByIdAndUpdate({ _id: userId }, data, {
-        returnDocument: "before",
-      });
-      console.log(user);
-      res.send("user data updated successfully");
-    } catch (error) {
-      res.status(404).send("something went wrong");
+  try {
+    const ALLOWED_UPDATES = [
+      "firstName",
+      "lastName",
+      "emailId",
+      "photoUrl",
+      "about",
+      "gender",
+      "age",
+      "skills",
+    ];
+    const isUpdateAllowed = Object.keys(data).every((k) =>
+      ALLOWED_UPDATES.includes(k)
+    );
+    if (!isUpdateAllowed) {
+      throw new Error("Update not allowed");
     }
-  });
+    if (data?.skills.length > 10) {
+      throw new Error("skills cannot be than 10");
+    }
+    const user = await User.findByIdAndUpdate({ _id: userId }, data, {
+      returnDocument: "before",
+    });
+    console.log(user);
+    res.send("user data updated successfully");
+  } catch (error) {
+    res.status(404).send("update failed: " + error.message);
+    console.log(error);
+  }
+});
 
 connectDB()
   .then(() => {
