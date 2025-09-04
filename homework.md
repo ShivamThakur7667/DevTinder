@@ -88,3 +88,12 @@ ENCRYPTING PASSWORDS
 -> Create PasswordHash using bcrypt.hash & save the user is excrupted password
 -> Create login API
 -> Compare passwords and throw errors if email or password is invalid
+
+AUTHENTICATION , JWT & COOKIES
+
+-> Install cookie-parser
+-> just send a dummy cookie to user
+-> Create GET /profile API and check if you get the cookie back
+-> Install JsonWebToken
+-> In login API, after email and password validation, create a JWT token and send it to user in cookie
+-> read the cookie inside your profile API and find that who is logged user
