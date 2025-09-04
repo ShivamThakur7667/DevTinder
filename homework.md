@@ -80,3 +80,9 @@ DATA SANITIZATION & SCHEMA VALIDATIONS
 -> Install validator
 -> Explore validator library function & Use functions for password, email, url
 -> NEVER TRUST req.body
+
+ENCRYPTING PASSWORDS
+
+-> Validate data in Signup API
+-> Install bcrypt package
+-> Create PasswordHash using bcrypt.hash & save the user is excrupted password
