@@ -19,10 +19,6 @@ app.post("/signup", async (req, res) => {
     const passwordHash = await bcrypt.hash(password, 10);
     console.log(passwordHash);
 
-    //     bcrypt.hash(password, saltRounds, function(err, hash) {
-
-    // });
-
     // creating a new instance of the user model
     const user = new User({
       firstName,
@@ -35,6 +31,27 @@ app.post("/signup", async (req, res) => {
     res.send("user added successfully");
   } catch (error) {
     res.status(400).send("Error : " + error.message);
+  }
+});
+
+app.post("/login", async (req, res) => {
+  try {
+    const { emailId, password } = req.body;
+
+    const user = await User.findOne({ emailId: emailId });
+    if (!user) {
+      throw new Error("Invalid Credentials");
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (isPasswordValid) {
+      res.send("Login Successfull!!");
+    } else {
+      throw new Error("Invalid Credentials");
+    }
+  } catch (err) {
+    res.status(404).send("ERROR : " + err.message);
   }
 });
 
