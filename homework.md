@@ -1,4 +1,4 @@
-EXPRESS SERVER ->
+# EXPRESS SERVER ->
 
 -> Create a repository
 -> Initialize the repository
@@ -12,7 +12,7 @@ EXPRESS SERVER ->
 -> what is the use "-g" while npm install
 -> Difference between (^ and ~)
 
-ROUTING & REQUEST HANDLERS ->
+# ROUTING & REQUEST HANDLERS ->
 
 -> Initialize git
 -> .gitignore
@@ -27,7 +27,7 @@ ROUTING & REQUEST HANDLERS ->
 -> Reading the query params in the routes
 -> Reading the dynamic routes
 
-MIDDLEWARES & ERROR HANDLERS ->
+# MIDDLEWARES & ERROR HANDLERS ->
 
 -> Multiple Route Handlers - Play with the code
 -> next()
@@ -40,7 +40,7 @@ MIDDLEWARES & ERROR HANDLERS ->
 -> write a dummy auth middleware for all user routes, expect /user/login
 -> Error handling using app.use("/", (err,req, res, next) = {});
 
-DATABASE, SCHEMA & MODELS MONGOOSE
+# DATABASE, SCHEMA & MODELS MONGOOSE
 
 -> Create a free cluster on MongoDB official website (Mongo Atlas)
 -> Install mongoose library
@@ -51,7 +51,7 @@ DATABASE, SCHEMA & MODELS MONGOOSE
 -> Push some documents using API calls fro postman
 -> Error handling using try and catch
 
-DIVING INTO APIs
+# DIVING INTO APIs
 
 -> Difference between JSON & JS object
 -> Add the express.json() middleware to your app
@@ -67,7 +67,7 @@ DIVING INTO APIs
 -> What are options in a Model.findOneAndUpdate method, explore more about it
 -> API - Update the user with email ID
 
-DATA SANITIZATION & SCHEMA VALIDATIONS
+# DATA SANITIZATION & SCHEMA VALIDATIONS
 
 -> Explore schematype options from the documentations
 -> add required, unique, lowercase, min, maxLength, trim
@@ -81,7 +81,7 @@ DATA SANITIZATION & SCHEMA VALIDATIONS
 -> Explore validator library function & Use functions for password, email, url
 -> NEVER TRUST req.body
 
-ENCRYPTING PASSWORDS
+# ENCRYPTING PASSWORDS
 
 -> Validate data in Signup API
 -> Install bcrypt package
@@ -89,7 +89,7 @@ ENCRYPTING PASSWORDS
 -> Create login API
 -> Compare passwords and throw errors if email or password is invalid
 
-AUTHENTICATION , JWT & COOKIES
+# AUTHENTICATION , JWT & COOKIES
 
 -> Install cookie-parser
 -> just send a dummy cookie to user
@@ -102,3 +102,13 @@ AUTHENTICATION , JWT & COOKIES
 -> Set the expiry of JWT token and cookies to the 7 days
 -> Create userSchema method to getJWT()
 -> Create userSchema method to comparePassword(passwordInputByUser)
+
+# Diving into the API's and Express Router
+
+-> Explore tinder APIs
+-> Create a list of all API you can think of in Dev Tinder
+-> Group multiple routes under repective routers
+-> Read documentation for express.Router
+-> Create routes folder for managing auth, profile, request routers
+-> Create authRouter, profileRouter, requestRouter
+-> Import these routers in app.js
