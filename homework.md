@@ -103,7 +103,7 @@
 -> Create userSchema method to getJWT()
 -> Create userSchema method to comparePassword(passwordInputByUser)
 
-# Diving into the API's and Express Router
+# DIVING INTO THE API's AND EXPRESS ROUTER
 
 -> Explore tinder APIs
 -> Create a list of all API you can think of in Dev Tinder
@@ -116,3 +116,7 @@
 -> Create PATCH /profile/edit
 -> Create PATCH /profile/password API => forgot password API
 -> Make uoyr validate all data in every POST, PATCH, APIs
+
+# LOGICAL DB QUERY & COMPOUND INDEXES
+
+-> 
