@@ -57,7 +57,7 @@
 -> Add the express.json() middleware to your app
 -> Make your signup API dynamic to receive data from the end user
 -> User.findOne with duplicate email ids, which object returned
--> API -  Get user by email
+-> API - Get user by email
 -> API - Feed API - GET /feed - get all the users from the database
 -> API - get user by Id
 -> Create a delete user API
@@ -119,4 +119,14 @@
 
 # LOGICAL DB QUERY & COMPOUND INDEXES
 
--> 
+-> Create Connection Request Schema
+-> Send Connection Request API
+-> Proper validation of Data
+-> Think about all corner cases
+-> $or query and $and query in mongoose
+-> Schema.pre("save") function
+-> Read more about indexes in MongoDB
+-> why do we need index in DB ?
+-> What are the advantages and disadvantages of creating indexes ?
+-> Read this article about compound indexes - https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/?msockid=31c2a3bcbbde63c6051fb58abad862bf
+-> Think About Corner Cases
