@@ -1,4 +1,4 @@
-# EXPRESS SERVER ->
+# EXPRESS SERVER
 
 -> Create a repository
 -> Initialize the repository
@@ -12,7 +12,7 @@
 -> what is the use "-g" while npm install
 -> Difference between (^ and ~)
 
-# ROUTING & REQUEST HANDLERS ->
+# ROUTING & REQUEST HANDLERS
 
 -> Initialize git
 -> .gitignore
@@ -27,7 +27,7 @@
 -> Reading the query params in the routes
 -> Reading the dynamic routes
 
-# MIDDLEWARES & ERROR HANDLERS ->
+# MIDDLEWARES & ERROR HANDLERS
 
 -> Multiple Route Handlers - Play with the code
 -> next()
@@ -130,3 +130,7 @@
 -> What are the advantages and disadvantages of creating indexes ?
 -> Read this article about compound indexes - https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/?msockid=31c2a3bcbbde63c6051fb58abad862bf
 -> Think About Corner Cases
+
+# REF, POPULATE & THOUGHT PROCESS OF WRITING APIs
+
+-> 
