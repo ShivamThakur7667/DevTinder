@@ -2,16 +2,15 @@ const express = require("express");
 const requestRouter = express.Router();
 const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
-const { Connection, connection } = require("mongoose");
 const User = require("../models/user");
 
 requestRouter.post(
-  "/request/send/:status/:touserId",
+  "/request/send/:status/:toUserId",
   userAuth,
   async (req, res) => {
     try {
       const fromUserId = req.user._id;
-      const toUserId = req.params.touserId;
+      const toUserId = req.params.toUserId;
       const status = req.params.status;
 
       const allowedStatus = ["ignored", "interested"];
@@ -29,7 +28,7 @@ requestRouter.post(
       const existingConnectionRequest = await ConnectionRequest.findOne({
         $or: [
           { fromUserId: fromUserId, toUserId: toUserId },
-          { fromUserId: toUserId, touserId: fromUserId },
+          { fromUserId: toUserId, toUserId: fromUserId },
         ],
       });
 
@@ -53,6 +52,7 @@ requestRouter.post(
         data,
       });
     } catch (error) {
+      console.error(error);
       res.status(400).send("ERROR : " + error.message);
     }
   }
@@ -69,8 +69,8 @@ requestRouter.post(
       const allowedStatus = ["accepted", "rejected"];
       if (!allowedStatus.includes(status)) {
         return res
-          .status(404)
-          .json({ message: "Invalid status code" + status });
+          .status(400)
+          .json({ message: "Invalid status code " + status });
       }
 
       const connectionRequest = await ConnectionRequest.findOne({
@@ -88,12 +88,9 @@ requestRouter.post(
       connectionRequest.status = status;
       const data = await connectionRequest.save();
       res.json({ message: "Connection Request " + status, data });
-
     } catch (error) {
-
+      console.error(error);
       res.status(400).send("ERROR: " + error.message);
-      console.log(error);
-
     }
   }
 );

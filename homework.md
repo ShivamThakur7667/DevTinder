@@ -133,4 +133,12 @@
 
 # REF, POPULATE & THOUGHT PROCESS OF WRITING APIs
 
--> 
+-> Write code with proper validation for POST /request/review/:status/:requestId
+-> Steps to get this result in postman "Connection Request Accepted"
+-> step 1 - singup userA
+-> step 2 - singup userB
+-> step 3 - loggedIn wih userA
+-> step 4 - UserA sends request to UserB (status must be - "ignored" || "interested")
+-> step 5 - Copy the id of request which you have sended recently
+-> step 6 - userA logout & userB loggedIn
+-> step 7 - UserB reviews the request (status must be - "accepted" || "rejected")
