@@ -142,3 +142,5 @@
 -> step 5 - Copy the id of request which you have sended recently
 -> step 6 - userA logout & userB loggedIn
 -> step 7 - UserB reviews the request (status must be - "accepted" || "rejected")
+-> step 8 - Read about ref and populate
+-> step 9 - Create GET /user/requests/recevied with all the checks
