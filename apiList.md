@@ -14,14 +14,9 @@
 -> POST /request/send/:status(accepted/rejected)/:userId
 -> POST /request/review/:status(accepted/rejected)/:requestId
 
-
-
--> POST /request/review/accepted/:requestId
--> POST /request/review/rejected/:requestId
-
 # userRouter
+-> GET /user/requests/recevied  -  ( It will show that which user has send me the request)
 -> GET /user/connections
--> GET /user/requests
 -> GET /user/feed - Gets you the profiles of other users on platform
 
 Status: ignored, interested accepted, rejected
