@@ -16,7 +16,7 @@
 
 # userRouter
 -> GET /user/requests/recevied  -  ( It will show that which user has send me the request)
--> GET /user/connections        - 
+-> GET /user/connections        -  ( It will show the users which are accepted by you )
 -> GET /user/feed - Gets you the profiles of other users on platform
 
 Status: ignored, interested accepted, rejected

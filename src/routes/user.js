@@ -15,7 +15,9 @@ userRouter.get("/user/requests/recevied", userAuth, async (req, res) => {
     }).populate("fromUserId", USER_SAFE_DATA);
     // }).populate("fromUserId", ["firstName", "lastName", "imageURL", "skills"]); // here we can see the name of the request user(firstName, lastName)
 
-    res.send(connectionRequest);
+    const data = connectionRequest.map((row) => row.fromUserId);
+
+    res.json({ data });
   } catch (error) {
     res.status(404).send("ERROR: " + error.mesasge);
   }
@@ -34,7 +36,10 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
         { fromUserId: loggedInUser._id, status: "accepted" },
       ],
     }).populate("fromUserId", USER_SAFE_DATA);
-    res.json({ data: connectionRequests });
+
+    const data = connectionRequests.map((row) => row.fromUserId);
+
+    res.json({ data });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
