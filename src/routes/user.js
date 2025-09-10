@@ -13,13 +13,15 @@ userRouter.get("/user/requests/recevied", userAuth, async (req, res) => {
     const connectionRequest = await ConnectionRequest.find({
       toUserId: loggedInUser._id,
     }).populate("fromUserId", USER_SAFE_DATA);
-    // }).populate("fromUserId", ["firstName", "lastName", "imageURL", "skills"]); // here we can see the name of the request user(firstName, lastName)
 
-    const data = connectionRequest.map((row) => row.fromUserId);
+    const data = connectionRequest.map((row) => ({
+      reqId: row._id,
+      User: row.fromUserId,
+    }));
 
     res.json({ data });
   } catch (error) {
-    res.status(404).send("ERROR: " + error.mesasge);
+    res.status(404).send("ERROR: " + error.message);
   }
 });
 
@@ -35,9 +37,19 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
         { toUserId: loggedInUser._id, status: "accepted" },
         { fromUserId: loggedInUser._id, status: "accepted" },
       ],
-    }).populate("fromUserId", USER_SAFE_DATA);
+    })
+      .populate("fromUserId", USER_SAFE_DATA)
+      .populate("toUserId", USER_SAFE_DATA);
 
-    const data = connectionRequests.map((row) => row.fromUserId);
+    // It will show that we filter out the Only essential
+    console.log(connectionRequests);
+
+    const data = connectionRequests.map((row) => {
+      if (row.fromUserId._id.toString() === loggedInUser._id.toString()) {
+        return row.toUserId;
+      }
+      return row.fromUserId;
+    });
 
     res.json({ data });
   } catch (error) {
