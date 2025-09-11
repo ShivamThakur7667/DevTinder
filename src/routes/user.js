@@ -1,6 +1,7 @@
 const express = require("express");
 const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
+const User = require("../models/user");
 
 const userRouter = express();
 const USER_SAFE_DATA = ["firstName", "lastName", "imageURL", "skills"];
@@ -59,11 +60,7 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
 
 userRouter.get("/feed", userAuth, async (req, res) => {
   try {
-    // User should see all the user cards except
-    // 1. his own card
-    // 2. his connections
-    // 3. ignored people
-    // 4. already sent the connection request
+    
 
     const loggedInUser = req.user;
 
@@ -73,17 +70,19 @@ userRouter.get("/feed", userAuth, async (req, res) => {
     }).select("fromUserId toUserId");
 
     const hideUsersFromFeed = new Set();
-    connectionRequests
-      .forEach((req) => {
-        hideUsersFromFeed.add(req.fromUserId.toString());
-        hideUsersFromFeed.add(req.toUserId.toString());
-      })
-      
+    connectionRequests.forEach((req) => {
+      hideUsersFromFeed.add(req.fromUserId.toString());
+      hideUsersFromFeed.add(req.toUserId.toString());
+    });
 
-    console.log(hideUsersFromFeed);
+    const users = await User.find({
+      $and: [
+        { _id: { $nin: Array.from(hideUsersFromFeed) } }, // Not present in Array of hideUsersFromFeed
+        { _id: { $ne: loggedInUser._id } }, // find all user where id is not equal to loggedInUser._id
+      ],
+    }).select(USER_SAFE_DATA); // Query to control which fields/columns you want to fetch from the database.
 
-    res.send(connectionRequests);
-    console.log(connectionRequests);
+    res.send(users);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

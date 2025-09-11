@@ -148,3 +148,12 @@
 
 # BUILDING FEED API & PAGINATION
 
+-> Logic for GET /feed API
+-> step 1 - User should see all the user cards except
+-> step 2 - his own card
+-> step 3 - his connections
+-> step 4 - ignored people
+-> step 5 - already sent the connection request
+
+-> UnderStand the use of select() function - Query to control which fields/columns you want to fetch from the database.
+-> Explore the $or, $nin, $and, $ne and other query operators
