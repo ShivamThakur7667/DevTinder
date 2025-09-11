@@ -145,7 +145,6 @@
 -> step 8 - Read about ref and populate
 -> step 9 - Create GET /user/requests/recevied with all the checks
 -> Created /user/connections API
--> last time 15 min before end
 
 # BUILDING FEED API & PAGINATION
 
