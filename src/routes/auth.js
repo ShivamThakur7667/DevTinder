@@ -7,17 +7,12 @@ const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res) => {
   try {
-    // Validation of data
     validateSignUpData(req);
 
     const { firstName, lastName, emailId, password } = req.body;
 
-    // Encryption of password
-
     const passwordHash = await bcrypt.hash(password, 10);
-    // console.log(passwordHash);
 
-    // creating a new instance of the user model
     const user = new User({
       firstName,
       lastName,
@@ -48,10 +43,13 @@ authRouter.post("/login", async (req, res) => {
 
       // Add the Token to cookie and send the response back to the user
       res.cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
         expires: new Date(Date.now() + 8 * 3600000),
       });
 
-      res.send(user);
+      res.json({ message: "Login successfull", user });
     } else {
       throw new Error("Invalid Credentials");
     }
@@ -62,6 +60,7 @@ authRouter.post("/login", async (req, res) => {
 
 authRouter.post("/logout", async (req, res) => {
   res.cookie("token", null, {
+    httpOnly: true,
     expires: new Date(Date.now()),
   });
   res.send("user is successfully logout!!");
