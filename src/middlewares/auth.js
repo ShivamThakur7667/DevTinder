@@ -8,7 +8,7 @@ const userAuth = async (req, res, next) => {
     const cookies = req.cookies;
     const { token } = cookies;
     if (!token) {
-      return res.status(401).send("Please LogIn");
+      return res.status(401).send("You are not Logged In !!");
     }
 
     const decodedObj = jwt.verify(token, JWT_SECRET);
