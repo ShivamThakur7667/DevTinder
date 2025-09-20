@@ -9,6 +9,8 @@ const validateSignUpData = (req) => {
     throw new Error("Email is not valid");
   } else if (!validator.isStrongPassword(password)) {
     throw new Error("password is not strong");
+  } else if (!validator.isGender(gender)) {
+    throw new Error("Gender is not valid");
   }
 };
 
@@ -24,14 +26,9 @@ const validateEditProfileData = (req) => {
     "skills",
   ];
 
-console.log("Incoming body:", req.body);
-
-
   const isAllowed = Object.keys(req.body).every((field) =>
     allowedEditFields.includes(field)
   );
-
-  console.log("Validation result:", isAllowed);
 
   return isAllowed;
 };

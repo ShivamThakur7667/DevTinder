@@ -65,7 +65,6 @@ userSchema.methods.getJWT = function () {
 userSchema.methods.validatePassword = async function (passwordInputByUser) {
   return bcrypt.compare(passwordInputByUser, this.password);
 };
-//  console.log(user.imageURL);
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
