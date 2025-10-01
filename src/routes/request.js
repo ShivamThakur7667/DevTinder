@@ -63,6 +63,10 @@ requestRouter.post(
   userAuth,
   async (req, res) => {
     try {
+      console.log("Logged-In user ID:", req.user._id);
+      console.log("Request ID from frontend:", req.params.requestId);
+      console.log("Status being sent:", req.params.status);
+
       const loggedInUser = req.user;
       const { status, requestId } = req.params;
 
@@ -78,6 +82,12 @@ requestRouter.post(
         toUserId: loggedInUser._id,
         status: "interested",
       });
+
+      // if (!connectionRequest || connectionRequest.status !== "interested") {
+      //   return res
+      //     .status(404)
+      //     .json({ message: "Connection Request not found" });
+      // }
 
       if (!connectionRequest) {
         return res

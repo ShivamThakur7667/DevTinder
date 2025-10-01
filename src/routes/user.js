@@ -2,11 +2,19 @@ const express = require("express");
 const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
+const { connections } = require("mongoose");
 const userRouter = express();
 
-const USER_SAFE_DATA = ["firstName", "lastName", "about", "imageURL"];
+const USER_SAFE_DATA = [
+  "firstName",
+  "lastName",
+  "about",
+  "imageURL", 
+  "age",
+  "gender",
+];
 
-userRouter.get("/user/requests/recevied", userAuth, async (req, res) => {
+userRouter.get("/user/requests/received", userAuth, async (req, res) => {
   try {
     const loggedInUser = req.user;
 
@@ -49,6 +57,18 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
     });
 
     res.json({ data });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+userRouter.delete("/user/:_id", userAuth, async (req, res) => {
+  try {
+    const { _id } = req.params;
+
+    // Remove the Connection and Update the Connection List in the Database
+    await User.findByIdAndDelete(_id);
+    res.json({ message: "Connection deleted Successfully !!" });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
